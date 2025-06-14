@@ -194,6 +194,8 @@ int wmain(int argc, wchar_t *argv[])
    
    //  Extract base path from first filespec,
    //  and strip off filename
+   //  base_path is used by programs such as folder-scanners,
+   //  which need to access full path to current files.
    _tcscpy(base_path, file_spec) ;
    TCHAR *strptr = _tcsrchr(base_path, _T('\\')) ;
    if (strptr != 0) {
@@ -206,18 +208,19 @@ int wmain(int argc, wchar_t *argv[])
    result = read_files(file_spec);
    if (result < 0) {
       dputsf(_T("filespec: %s, %s\n"), file_spec, strerror(-result));
+      return (-result);
    }
-   else {
-      dputsf(_T("filespec: %s, fcount: %u\n"), file_spec, filecount);
-      if (filecount > 0) {
-         dputsf(L"\n");
-         for(auto &file : flist)
-         {
-            print_file_info(file);
-         }
-      }  //lint !e681 !e42 !e529
+   
+   dputsf(_T("filespec: %s, fcount: %u\n"), file_spec, filecount);
+   if (filecount > 0) {
       dputsf(L"\n");
-   }
+      for(auto &file : flist)
+      {
+         print_file_info(file);
+      }
+   }  //lint !e681 !e42 !e529
+   dputsf(L"\n");
+      
    restore_console_attribs();
    return 0;
 }
