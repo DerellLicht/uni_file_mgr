@@ -52,7 +52,8 @@ ifeq ($(USE_STATIC),YES)
 LFLAGS += -static
 endif
 
-CPPSRC=uni_file_mgr.cpp file_handler.cpp conio_min.cpp \
+CPPSRC=uni_file_mgr.cpp file_handler.cpp \
+der_libs\conio_min.cpp \
 der_libs\common_funcs.cpp \
 der_libs\qualify.cpp 
 
@@ -110,9 +111,9 @@ $(BIN): $(OBJS)
 
 # DO NOT DELETE
 
-uni_file_mgr.o: der_libs/common.h conio_min.h uni_file_mgr.h
+uni_file_mgr.o: der_libs/common.h der_libs/conio_min.h uni_file_mgr.h
 uni_file_mgr.o: der_libs/qualify.h
-file_handler.o: der_libs/common.h conio_min.h uni_file_mgr.h
-conio_min.o: conio_min.h
+file_handler.o: der_libs/common.h der_libs/conio_min.h uni_file_mgr.h
+der_libs\conio_min.o: der_libs/common.h der_libs/conio_min.h
 der_libs\common_funcs.o: der_libs/common.h
 der_libs\qualify.o: der_libs/qualify.h
