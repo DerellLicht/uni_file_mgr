@@ -43,6 +43,9 @@ static uint filecount = 0 ;
 TCHAR base_path[MAX_FILE_LEN+1] ;
 unsigned base_len ;  //  length of base_path
 
+//lint -e129  declaration expected, identifier '__created' ignored
+std::unique_ptr<conio_min> console ;
+
 //**********************************************************************************
 //  constructor for ffdata struct
 //**********************************************************************************
@@ -163,8 +166,13 @@ int wmain(int argc, wchar_t *argv[])
 {
    int idx, result ;
 
-   console_init() ;
-   dputsf(L"%s, %u-bit\n", Version, get_build_size());
+   console = std::make_unique<conio_min>() ;
+   // if (!console_init()) {
+   if (!console->init_okay()) {  //lint !e530
+      wprintf(L"console init failed\n");
+      return 1 ;
+   }
+   console->dputsf(L"%s, %u-bit\n", Version, get_build_size());
    //  okay, the cause of this, is that apparently I have to use
    //  double-backslash to put a quote after a backslash...
    //  But forward slash works fine...
@@ -188,7 +196,7 @@ int wmain(int argc, wchar_t *argv[])
 
    result = qualify(file_spec) ;
    if (result == QUAL_INV_DRIVE) {
-      dputsf(_T("%s: %d\n"), file_spec, result);
+      console->dputsf(_T("%s: %d\n"), file_spec, result);
       return 1 ;
    }
    
@@ -207,21 +215,22 @@ int wmain(int argc, wchar_t *argv[])
 
    result = read_files(file_spec);
    if (result < 0) {
-      dputsf(_T("filespec: %s, %s\n"), file_spec, strerror(-result));
+      console->dputsf(_T("filespec: %s, %s\n"), file_spec, strerror(-result));
       return (-result);
    }
    
-   dputsf(_T("filespec: %s, fcount: %u\n"), file_spec, filecount);
+   console->dclrscr();
+   console->dputsf(_T("filespec: %s, fcount: %u\n"), file_spec, filecount);
    if (filecount > 0) {
-      dputsf(L"\n");
+      console->dputsf(L"\n");
       for(auto &file : flist)
       {
          print_file_info(file);
       }
    }  //lint !e681 !e42 !e529
-   dputsf(L"\n");
+   console->dputsf(L"\n");
       
-   restore_console_attribs();
+   // restore_console_attribs(); //  we don't have to do this any more!!
    return 0;
 }
 

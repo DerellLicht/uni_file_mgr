@@ -3,9 +3,9 @@
 USE_DEBUG = NO
 USE_64BIT = NO
 USE_UNICODE = YES
-USE_CLANG = NO
+USE_CLANG = YES
 # use -static for clang and cygwin/mingw
-USE_STATIC = NO
+USE_STATIC = YES
 
 #  clang++ vs tdm g++
 #  clang gives *much* clearer compiler error messages...
@@ -112,9 +112,7 @@ $(BIN): $(OBJS)
 
 uni_file_mgr.o: der_libs/common.h conio_min.h uni_file_mgr.h
 uni_file_mgr.o: der_libs/qualify.h
-file_handler.o: der_libs/common.h der_libs/commonw.h conio_min.h
-file_handler.o: uni_file_mgr.h
-conio_min.o: der_libs/common.h conio_min.h
+file_handler.o: der_libs/common.h conio_min.h uni_file_mgr.h
+conio_min.o: conio_min.h
 der_libs\common_funcs.o: der_libs/common.h
-der_libs\common_win.o: der_libs/common.h der_libs/commonw.h
 der_libs\qualify.o: der_libs/qualify.h

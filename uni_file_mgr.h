@@ -3,10 +3,12 @@
 //  media_list.cpp - list info about various media files
 //**********************************************************************************
 
-//lint -esym(552, base_len)   Symbol not accessed
-//lint -esym(759, base_path, base_len)   header declaration for symbol could be moved from header to module
+//lint -esym(552, base_len, base_path)
+//lint -esym(759, base_len, base_path)
 extern TCHAR base_path[MAX_FILE_LEN+1] ;
 extern unsigned base_len ;  //  length of base_path
+
+extern std::unique_ptr<conio_min> console ;
 
 //************************************************************
 //lint -esym(1401, ffdata::ft)  member not initialized by constructor

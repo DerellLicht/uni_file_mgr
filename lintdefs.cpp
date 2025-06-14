@@ -73,4 +73,5 @@
 //lint -e1087  Previous declaration of '__gnu_cxx::__is_signed' (line 88) is incompatible
 //lint -e1098  Function template specialization does not match any function template
 //lint -e1712  default constructor not defined for class 'ffdata'
+//lint -e1025  No function matches invocation 
 
