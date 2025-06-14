@@ -166,8 +166,8 @@ int wmain(int argc, wchar_t *argv[])
 {
    int idx, result ;
 
-   console = std::make_unique<conio_min>() ;
    // if (!console_init()) {
+   console = std::make_unique<conio_min>() ;
    if (!console->init_okay()) {  //lint !e530
       wprintf(L"console init failed\n");
       return 1 ;
