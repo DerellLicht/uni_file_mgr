@@ -1,24 +1,8 @@
-# media_list - list info about media files
-This application is copyright (c) 2023  Derell Licht  
-This program, and its source code, are distributed as unrestricted freeware.
-You can use them for any purpose, personal or commercial, in whole or in part,
-for any purpose that you wish, without contacting me further.
+# uni_file_mgr - demo program which shows how to handle various Unicode tasks with MinGW and console 
+This application is copyright (c) 2025  Derell Licht  
 
-This console (i.e., command line) utility will list useful data about various media files.  
-This replaces the /mm functionality in my ndir utility.
+- All programs here are licensed under Creative Commons CC0 1.0 Universal;  
+https://creativecommons.org/publicdomain/zero/1.0/
 
-### File formats supported:
-
-- image formats  
-jpg, gif, bmp, png, ico, cur, ani, sid, webp, tif, tiff, avif
-
-- audio formats  
-flac, ogg, mp3, wav, wma
-
-- video formats  
-avi, flv, mkv, mov, mp4, mpg, mpeg, wmv, webm
-
-View [sample output](http://derelllicht.com/files/MediaList.out) here
-
-Download [executable](http://derelllicht.com/files/media_list.zip) here
-
+This program will demonstrate how to handle console input and output, as well as reading
+files, in a Unicode environment, using MinGW toolchain.
