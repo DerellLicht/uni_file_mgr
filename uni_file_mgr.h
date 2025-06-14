@@ -4,7 +4,7 @@
 //**********************************************************************************
 
 //lint -esym(552, base_len, base_path)
-//lint -esym(759, base_len, base_path)
+//lint -esym(759, base_len, base_path, calc_max_filename_len)
 extern TCHAR base_path[MAX_FILE_LEN+1] ;
 extern unsigned base_len ;  //  length of base_path
 
@@ -33,5 +33,6 @@ struct ffdata
 } ;
 
 //  file_handler.cpp
+void calc_max_filename_len(ffdata& ftemp);
 int print_file_info(ffdata& ftemp);
 

@@ -18,6 +18,18 @@
 #endif
 #include "uni_file_mgr.h"
 
+static uint max_filename_len = 0 ;
+//************************************************************************
+//lint -esym(759, print_file_info) header declaration for symbol could be moved from header to module
+void calc_max_filename_len(ffdata& ftemp)
+{
+   // print_file_info(file);
+   uint flen = ftemp.filename.length();
+   if (max_filename_len < flen) {
+      max_filename_len = flen ;
+   }
+}  //lint !e550 !e1764
+
 //************************************************************************
 //lint -esym(759, print_file_info) header declaration for symbol could be moved from header to module
 int print_file_info(ffdata& ftemp)
@@ -30,7 +42,7 @@ int print_file_info(ffdata& ftemp)
    }
    //  display file entry
    else {
-      console->dputsf(L"%-20s ", fptr->filename.c_str());
+      console->dputsf(L"%-*s ", max_filename_len, fptr->filename.c_str());
       console->dputsf(_T("%14s\n"), convert_to_commas(fptr->fsize, NULL));
    }
    return 0 ;  //lint !e438

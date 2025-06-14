@@ -15,6 +15,8 @@
 #include "uni_file_mgr.h"
 #include "qualify.h"
 
+//lint -esym(1058, print_file_info)
+
 //  V1.01  Convert to Unicode
 //  V1.02  Add support for SVG files
 //  V1.03  Converted files linked list to vector/unique_ptr
@@ -166,7 +168,6 @@ int wmain(int argc, wchar_t *argv[])
 {
    int idx, result ;
 
-   // if (!console_init()) {
    console = std::make_unique<conio_min>() ;
    if (!console->init_okay()) {  //lint !e530
       wprintf(L"console init failed\n");
@@ -194,11 +195,14 @@ int wmain(int argc, wchar_t *argv[])
       _tcscpy(file_spec, _T("."));
    }
 
+   console->dclrscr();
+   // console->dputsf(L"pre:  %s\n", file_spec);
    result = qualify(file_spec) ;
    if (result == QUAL_INV_DRIVE) {
       console->dputsf(_T("%s: %d\n"), file_spec, result);
       return 1 ;
    }
+   // console->dputsf(L"post: %s\n", file_spec);
    
    //  Extract base path from first filespec,
    //  and strip off filename
@@ -219,10 +223,15 @@ int wmain(int argc, wchar_t *argv[])
       return (-result);
    }
    
-   console->dclrscr();
    console->dputsf(_T("filespec: %s, fcount: %u\n"), file_spec, filecount);
    if (filecount > 0) {
-      console->dputsf(L"\n");
+      //  find max filename length
+      for(auto &file : flist)
+      {
+         calc_max_filename_len(file);
+      }
+      console->dputsf(L"\n"); //lint !e681  Loop is not entered
+      
       for(auto &file : flist)
       {
          print_file_info(file);

@@ -54,6 +54,7 @@
 //lint -e151   Token 'flist' inconsistent with abstract type
 //lint -e155   Ignoring { }'ed sequence within an expression, 0 assumed
 //lint -e503   Boolean argument to relational
+//lint -e521   Highest operation, a 'constant', lacks side-effects
 //lint -e522   Highest operation, operator '!=', lacks side-effects
 //lint -e526   Symbol not defined
 //lint -e628   no argument information provided for function 
@@ -72,6 +73,7 @@
 //lint -e1077  Could not evaluate default template parameter '=typename _Alloc::value_type'
 //lint -e1087  Previous declaration of '__gnu_cxx::__is_signed' (line 88) is incompatible
 //lint -e1098  Function template specialization does not match any function template
+//lint -e1514  Creating temporary to copy 'int' to 'struct ffdata &' (context: arg. no. 1)
 //lint -e1712  default constructor not defined for class 'ffdata'
 //lint -e1025  No function matches invocation 
 
