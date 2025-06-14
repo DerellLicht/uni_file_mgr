@@ -38,12 +38,12 @@ int print_file_info(ffdata& ftemp)
 
    //  display directory entry
    if (fptr->dirflag) {
-      console->dputsf(_T("[%s]\n"), fptr->filename.c_str());
+      console->dputsf(L"[%s]\n", fptr->filename.c_str());
    }
    //  display file entry
    else {
       console->dputsf(L"%-*s ", max_filename_len, fptr->filename.c_str());
-      console->dputsf(_T("%14s\n"), convert_to_commas(fptr->fsize, NULL));
+      console->dputsf(L"%14s\n", convert_to_commas(fptr->fsize, NULL));
    }
    return 0 ;  //lint !e438
 }  //lint !e550
