@@ -12,15 +12,15 @@
 
 #include "common.h"
 #include "conio_min.h"
-#include "media_list.h"
+#include "uni_file_mgr.h"
 #include "qualify.h"
 
 //  V1.01  Convert to Unicode
 //  V1.02  Add support for SVG files
 //  V1.03  Converted files linked list to vector/unique_ptr
-#define  VER_NUMBER "1.03"
+#define  VER_NUMBER "1.00"
 
-static TCHAR const * const Version = _T("MediaList, Version " VER_NUMBER ) ;   //lint !e707
+static TCHAR const * const Version = _T("UniFileMgr, Version " VER_NUMBER ) ;   //lint !e707
 
 //  per Jason Hood, this turns off MinGW's command-line expansion, 
 //  so we can handle wildcards like we want to.                    
@@ -156,20 +156,6 @@ int main()
 
 #endif //defined(__GNUC__) && defined(_UNICODE)
 
-//**************************************************************
-//  test function
-//**************************************************************
-// static void use_struct(ffdata& file)
-// {
-//    if (file.dirflag) {
-//       dputsf(L"[%s]\n", file.filename.c_str());
-//    }
-//    else {
-//       // std::wprintf(L"%s\n", file.filename.c_str());
-//       dputsf(L"%s\n", file.filename.c_str());
-//    }
-// }
-
 //********************************************************************************
 static TCHAR file_spec[MAX_FILE_LEN+1] = _T("") ;
 
@@ -227,25 +213,9 @@ int wmain(int argc, wchar_t *argv[])
          dputsf(L"\n");
          for(auto &file : flist)
          {
-            // use_struct(file);
-            print_media_info(file);
+            print_file_info(file);
          }
       }  //lint !e681 !e42 !e529
-      // media_list.cpp  283  Warning 681: Loop is not entered
-      // media_list.cpp  283  Error 42: Expected a statement
-      // media_list.cpp  283  Warning 529: Symbol 'file' (line 277) not subsequently referenced
-      
-      //  see if there is any special results to display
-      TCHAR timestr[80] ;
-      if (total_ptime > 0x01) {
-         if (total_ptime < 60.0) {
-            _stprintf(timestr, _T("%.2f seconds     "), total_ptime) ;  //lint !e592
-         } else {
-            total_ptime /= 60.0 ;
-            _stprintf(timestr, _T("%.2f minutes     "), total_ptime) ;  //lint !e592
-         }
-         dputsf(_T("\ntotal playing time: %s\n"), timestr) ;
-      }
       dputsf(L"\n");
    }
    restore_console_attribs();
