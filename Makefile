@@ -72,12 +72,12 @@ LIBS=-lshlwapi -lcomdlg32
 
 OBJS = $(CPPSRC:.cpp=.o)
 
-GPP_NAME=g++
-#GPP_NAME=clang++
+GNAME=g++
+#GNAME=clang++
 
 #**************************************************************************
 %.o: %.cpp
-	$(TOOLS)\$(GPP_NAME) $(CFLAGS) -c $< -o $@
+	$(TOOLS)/$(GNAME) $(CFLAGS) -c $< -o $@
 
 ifeq ($(USE_64BIT),NO)
 BIN = uni_file_mgr.exe
@@ -107,7 +107,7 @@ depend:
 	makedepend $(IFLAGS) $(CPPSRC)
 
 $(BIN): $(OBJS)
-	$(TOOLS)\$(GPP_NAME) $(OBJS) $(LFLAGS) -o $(BIN) $(LIBS) 
+	$(TOOLS)/$(GNAME) $(OBJS) $(LFLAGS) -o $(BIN) $(LIBS) 
 
 # DO NOT DELETE
 
