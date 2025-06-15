@@ -45,7 +45,7 @@ static uint filecount = 0 ;
 TCHAR base_path[MAX_FILE_LEN+1] ;
 unsigned base_len ;  //  length of base_path
 
-//lint -e129  declaration expected, identifier '__created' ignored
+//lint -e129  declaration expected, identifier ignored
 std::unique_ptr<conio_min> console ;
 
 //**********************************************************************************
