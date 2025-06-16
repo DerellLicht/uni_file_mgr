@@ -33,7 +33,13 @@
 //lint -e734   Loss of precision (assignment) (31 bits to 15 bits)
 //lint -e732   Loss of sign (arg. no. 3) (int to unsigned long)
 
+//lint -esym(401, __created)   Symbol not referenced
+//lint -esym(528, __created)   Symbol not referenced
+//lint -esym(843, __created)   Variable could be declared as const
+
 //  warnings/errors caused by PcLint not supporting STL, or C++11 standard
+//lint -e2     Unclosed Quote
+//lint -e18    Symbol redeclared (basic) 
 //lint -e19    Useless Declaration
 //lint -e26    Expected an expression, found ')'
 //lint -e30    Expected an integer constant
@@ -51,13 +57,20 @@
 //lint -e63    Expected an lvalue
 //lint -e64    Type mismatch (initialization) (struct ffdata * = int)
 //lint -e78    Symbol ... typedef'ed at line ... used in expression
+//lint -e110   Attempt to assign to void
 //lint -e151   Token 'flist' inconsistent with abstract type
 //lint -e155   Ignoring { }'ed sequence within an expression, 0 assumed
 //lint -e503   Boolean argument to relational
+//lint -e515   Symbol has arg. count conflict 
+//lint -e516   Symbol has arg. type conflict 
 //lint -e521   Highest operation, a 'constant', lacks side-effects
 //lint -e522   Highest operation, operator '!=', lacks side-effects
 //lint -e526   Symbol not defined
-//lint -e628   no argument information provided for function 
+//lint -e530   Symbol not initialized
+//lint -e550   Symbol not accessed
+//lint -e559   Size of argument no. 2 inconsistent with format
+//lint -e628   no argument information provided for function
+//lint -e681   Loop is not entered
 //lint -e746   call to function not made in the presence of a prototype
 //lint -e808   No explicit type given symbol 'file', int assumed
 //lint -e1013  Symbol not a member of class ''
@@ -76,4 +89,6 @@
 //lint -e1514  Creating temporary to copy 'int' to 'struct ffdata &' (context: arg. no. 1)
 //lint -e1712  default constructor not defined for class 'ffdata'
 //lint -e1025  No function matches invocation 
+//lint -e1066  Symbol declared as "C" conflicts ...
+//lint -e1776  Converting a string literal is not const safe (initialization)
 

@@ -186,15 +186,6 @@ int wmain(int argc, wchar_t *argv[])
    // > medialist glock17\\"буяновский страйкбол"
    // filespec: D:\SourceCode\Git\media_list\glock17\буяновский страйкбол\*, fcount: 3
    
-   // for (idx=1; idx<argc; idx++) {
-   //    TCHAR *p = argv[idx] ;
-   //    _tcsncpy(file_spec, p, MAX_FILE_LEN);
-   //    file_spec[MAX_FILE_LEN] = 0 ;
-   // }
-   // 
-   // if (file_spec[0] == 0) {
-   //    _tcscpy(file_spec, _T("."));
-   // }
    if (argc == 1) {
       file_spec = L"." ;
    }
