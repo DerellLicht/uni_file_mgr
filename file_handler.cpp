@@ -54,24 +54,13 @@ int print_file_info(ffdata& ftemp)
       if (ext_dot == 0  ||  ext_dot == std::wstring::npos) {
          fptr->name = fptr->filename;
          fptr->ext = {};
-         
-         // console->dputsf(L"%d: %s: [%s], %u\n", 
-         //    ext_dot,
-         //    fptr->filename.c_str(),
-         //    fptr->name.c_str(),
-         //    fptr->fsize);
       }
       else {
          fptr->name = fptr->filename.substr(0, ext_dot);
          fptr->ext  = fptr->filename.substr(ext_dot);
-         
       }
-         console->dputsf(L"%d: %s: [%s].[%s], %u\n", 
-            ext_dot,
-            fptr->filename.c_str(),
-            fptr->name.c_str(),
-            fptr->ext.c_str(),
-            fptr->fsize);
+      console->dputsf(L"%d: %s: [%s].[%s], %u\n", 
+         ext_dot, fptr->filename.c_str(), fptr->name.c_str(), fptr->ext.c_str(), fptr->fsize);
    }
    return 0 ;  //lint !e438
 }  //lint !e550
