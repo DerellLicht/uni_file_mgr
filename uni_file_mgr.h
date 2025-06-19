@@ -28,6 +28,8 @@ struct ffdata
     FILETIME ft {};
     ULONGLONG fsize {};
     std::wstring filename {};
+    std::wstring name {};
+    std::wstring ext {};
     bool dirflag {} ;
     ffdata(DWORD sattrib, FILETIME sft, ULONGLONG sfsize, std::wstring sfilename, bool sdirflag );
 } ;
