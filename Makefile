@@ -97,7 +97,7 @@ dist:
 	zip uni_file_mgr.zip $(BIN) Readme.md
 
 wc:
-	wc -l *.cpp
+	wc -l $(CPPSRC)
 
 check:
 	cmd /C "d:\clang\bin\clang-tidy.exe $(CHFLAGS) $(CPPSRC) $(CHTAIL)"
