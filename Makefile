@@ -49,6 +49,9 @@ LiFLAGS += -Ider_libs
 CFLAGS += -Ider_libs
 IFLAGS += -Ider_libs
 
+# This is required for *some* versions of makedepend
+IFLAGS += -DNOMAKEDEPEND
+
 ifeq ($(USE_STATIC),YES)
 LFLAGS += -static
 endif
@@ -119,4 +122,4 @@ uni_file_mgr.o: der_libs/qualify.h
 file_handler.o: der_libs/common.h der_libs/conio_min.h uni_file_mgr.h
 der_libs\conio_min.o: der_libs/common.h der_libs/conio_min.h
 der_libs\common_funcs.o: der_libs/common.h
-der_libs\qualify.o: der_libs/qualify.h
+der_libs\qualify.o: der_libs/common.h der_libs/qualify.h
