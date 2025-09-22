@@ -122,6 +122,80 @@ int read_files(TCHAR *filespec)
 }
 
 //********************************************************************************
+//  unrelated debug function
+//********************************************************************************
+struct vcolumn_elements_s {
+   ffdata *ftemp {nullptr};
+   uint rows {};
+   uint top_col_idx {};
+};
+#define  MAX_COLUMNS    25
+static vcolumn_elements_s vcolumns[MAX_COLUMNS] ;
+
+static void test_column_counts(void)
+{
+   filecount = 57 ;
+   uint disp_cols = 6 ;
+   uint j ;
+   uint rows = (unsigned) filecount / disp_cols ;
+   uint partrows = (unsigned) filecount % disp_cols ;
+
+   for (j=0; j< disp_cols ; j++) {
+      vcolumns[j].rows = rows ;
+   }
+   for (j=0; j<partrows; j++) {
+      vcolumns[j].rows++ ;
+   }
+
+   //  after partrows causes rows to be incremented for some columns,
+   //  then actual overall value of rows needs to be incremented to reflect this.
+   //  If there were no partrows, then rows is already correct.
+   if (partrows > 0) {
+      rows++ ;
+   }
+   
+   //  new method: store top-of-column index
+   vcolumns[0].top_col_idx = 0 ;
+   for (j=1; j< disp_cols ; j++) {
+      vcolumns[j].top_col_idx = vcolumns[j-1].top_col_idx + vcolumns[j-1].rows;
+   }
+      
+   for (j=0; j< disp_cols ; j++) {
+      console->dputsf(L"%u: top: %2u, rows: %2u\n", j,
+         vcolumns[j].top_col_idx, vcolumns[j].rows);
+   }
+   console->dputsf(L"\n");
+   
+   //  next, print out file indices
+   j = 0 ;
+   uint idxFile ;
+   uint fcount = 0 ;
+   unsigned row_num = 0 ;
+   console->dputsf(L"\nrow %u:  ", row_num);
+   while (LOOP_FOREVER) {
+      if (fcount < filecount) {
+         // lfn_fprint[columns](vcolumns[j].ftemp) ; //  vertical listing  NOLINT
+         // vcolumns[j].top_col_idx, vcolumns[j].rows);
+         idxFile = vcolumns[j].top_col_idx + row_num ;
+         console->dputsf(L"%u  ", idxFile);
+         
+      }
+
+      //  draw separator characters as required
+      fcount++ ;
+      if (++j == disp_cols) {
+         if (--rows == 0)
+            break;
+         j = 0 ;
+         row_num++ ;
+         console->dputsf(L"\nrow %u:  ", row_num);
+         // ncrlf() ;
+      } 
+   }  //  loop forever
+   
+}
+
+//********************************************************************************
 //  this solution is from:
 //  https://github.com/coderforlife/mingw-unicode-main/
 //********************************************************************************
@@ -241,6 +315,9 @@ int wmain(int argc, wchar_t *argv[])
       }
    }  //lint !e681 !e42 !e529
    console->dputsf(L"\n");
+   
+   //  other random debug stuff
+   test_column_counts();
       
    // restore_console_attribs(); //  we don't have to do this any more!!
    return 0;
