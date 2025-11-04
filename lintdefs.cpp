@@ -5,6 +5,7 @@
 //lint -e713  Loss of precision (arg. no. 2) (unsigned int to long)
 //lint -e737  Loss of sign in promotion from int to unsigned long
 //lint -e754  local struct member not referenced
+//lint -e56   Bad type
 
 //  deal with ambiguities in MediaInfoDll.cpp
 //lint -esym(526, get_mi_info)  //  symbol not defined

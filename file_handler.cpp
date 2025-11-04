@@ -59,7 +59,7 @@ int print_file_info(ffdata& ftemp)
          fptr->name = fptr->filename.substr(0, ext_dot);
          fptr->ext  = fptr->filename.substr(ext_dot);
       }
-      console->dputsf(L"%d: %s: [%s].[%s], %u\n", 
+      console->dputsf(L"%d: %s: [%s][%s], %u\n", 
          ext_dot, fptr->filename.c_str(), fptr->name.c_str(), fptr->ext.c_str(), fptr->fsize);
    }
    return 0 ;  //lint !e438
