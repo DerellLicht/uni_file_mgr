@@ -122,7 +122,29 @@ int read_files(TCHAR *filespec)
 }
 
 //********************************************************************************
-//  unrelated debug function
+//  The purpose of this function is to test calculation of row/column handling
+//  for NDIR directory lister, when listing files vertically.
+// 
+//  intermediate computations
+// 0: top:  0, rows: 10
+// 1: top: 10, rows: 10
+// 2: top: 20, rows: 10
+// 3: top: 30, rows:  9
+// 4: top: 39, rows:  9
+// 5: top: 48, rows:  9
+// 
+//  final computations
+// row 0:  0  10  20  30  39  48
+// row 1:  1  11  21  31  40  49
+// row 2:  2  12  22  32  41  50
+// row 3:  3  13  23  33  42  51
+// row 4:  4  14  24  34  43  52
+// row 5:  5  15  25  35  44  53
+// row 6:  6  16  26  36  45  54
+// row 7:  7  17  27  37  46  55
+// row 8:  8  18  28  38  47  56
+// row 9:  9  19  29
+// 
 //********************************************************************************
 struct vcolumn_elements_s {
    ffdata *ftemp {nullptr};
