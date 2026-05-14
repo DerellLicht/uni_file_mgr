@@ -325,6 +325,7 @@ int wmain(int argc, wchar_t *argv[])
    console->dputsf(_T("filespec: %s, fcount: %u\n"), file_spec.c_str(), filecount);
    if (filecount > 0) {
       //  find max filename length
+      //  This is used in formatting console output messages in tables
       for(auto &file : flist)
       {
          calc_max_filename_len(file);
