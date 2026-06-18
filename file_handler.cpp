@@ -44,7 +44,7 @@ int print_file_info(ffdata& ftemp)
    else {
       // console->dputsf(L"%-*s ", max_filename_len, fptr->filename.c_str());
       // console->dputsf(L"|%14s\n", convert_to_commas(fptr->fsize, NULL));
-      size_t ext_dot = fptr->filename.find_last_of(L".");
+      size_t ext_dot = fptr->filename.find_last_of(L'.');
       // if (ext_dot == std::wstring::npos) {
       //    console->dputsf(L"%d: %s: %s\n", ext_dot, fptr->filename.c_str(), get_system_message());
       // }

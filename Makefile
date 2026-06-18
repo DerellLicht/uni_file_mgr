@@ -17,7 +17,7 @@ ifeq ($(USE_64BIT),YES)
 TOOLS=d:\tdm64\bin
 else
 ifeq ($(USE_CLANG),YES)
-TOOLS=d:\clang\bin
+TOOLS=d:\llvm\bin
 else
 TOOLS=d:\tdm32\bin
 endif
@@ -104,7 +104,7 @@ wc:
 	wc -l $(CPPSRC)
 
 check:
-	cmd /C "d:\clang\bin\clang-tidy.exe $(CHFLAGS) $(CPPSRC) $(CHTAIL)"
+	cmd /C "d:\llvm\bin\clang-tidy.exe $(CHFLAGS) $(CPPSRC) $(CHTAIL)"
 
 lint:
 	cmd /C "c:\lint9\lint-nt +v -width(160,4) $(LiFLAGS) -ic:\lint9 mingw.lnt -os(_lint.tmp) $(LINTFILES) $(CPPSRC)"
