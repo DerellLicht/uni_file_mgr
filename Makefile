@@ -61,17 +61,6 @@ der_libs\conio_min.cpp \
 der_libs\common_funcs.cpp \
 der_libs\qualify.cpp 
 
-#  clang-tidy options
-CHFLAGS = -header-filter=.*
-CHTAIL = --
-CHTAIL += -Ider_libs
-ifeq ($(USE_64BIT),YES)
-CHTAIL += -DUSE_64BIT
-endif
-ifeq ($(USE_UNICODE),YES)
-CHTAIL += -DUNICODE -D_UNICODE
-endif
-
 LINTFILES=lintdefs.cpp lintdefs.ref.h 
 
 OBJS = $(CPPSRC:.cpp=.o)

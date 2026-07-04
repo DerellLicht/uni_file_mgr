@@ -1,0 +1,42 @@
+[
+ {
+  "directory": "D:\\SourceCode\\Git\\uni_file_mgr",
+  "arguments": [
+   "D:/llvm/bin/x86_64-w64-mingw32-clang++.exe",
+   "-Wall",
+   "-O3",
+   "-c",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-DUNICODE",
+   "-D_UNICODE",
+   "-DUSING_CLANG",
+   "-Ider_libs",
+   "-c",
+   "uni_file_mgr.cpp",
+   "-o",
+   "uni_file_mgr.o"
+  ],
+  "file": "uni_file_mgr.cpp"
+ },
+ {
+  "directory": "D:\\SourceCode\\Git\\uni_file_mgr",
+  "arguments": [
+   "D:/llvm/bin/x86_64-w64-mingw32-clang++.exe",
+   "-Wall",
+   "-O3",
+   "-c",
+   "-Weffc++",
+   "-Wno-write-strings",
+   "-DUNICODE",
+   "-D_UNICODE",
+   "-DUSING_CLANG",
+   "-Ider_libs",
+   "-c",
+   "file_handler.cpp",
+   "-o",
+   "file_handler.o"
+  ],
+  "file": "file_handler.cpp"
+ }
+]
