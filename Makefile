@@ -57,9 +57,9 @@ LFLAGS += -static
 endif
 
 CPPSRC=uni_file_mgr.cpp file_handler.cpp \
-der_libs\conio_min.cpp \
-der_libs\common_funcs.cpp \
-der_libs\qualify.cpp 
+der_libs/conio_min.cpp \
+der_libs/common_funcs.cpp \
+der_libs/qualify.cpp 
 
 LINTFILES=lintdefs.cpp lintdefs.ref.h 
 
