@@ -1,0 +1,2 @@
+uni_file_mgr.h:27  # unused field 'ffdata::attrib'
+uni_file_mgr.h:28  # unused field 'ffdata::ft'

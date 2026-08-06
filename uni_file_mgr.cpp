@@ -30,7 +30,7 @@ static TCHAR const * const Version = _T("UniFileMgr, Version " VER_NUMBER ) ;   
 //lint -e714  Symbol '_CRT_glob' not referenced
 int _CRT_glob = 0 ;
 
-double total_ptime = 0.0 ;
+// double total_ptime = 0.0 ;
 
 // lint -esym(534, FindClose)  // Ignoring return value of function
 //lint -esym(818, filespec, argv)  //could be declared as pointing to const
@@ -108,7 +108,8 @@ int read_files(TCHAR *filespec)
                             fdata.ftCreationTime,
                            (fdata.nFileSizeHigh * 1LL<<32) + fdata.nFileSizeLow,
                             fdata.cFileName,
-                           (fdata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? true : false);
+                          ((fdata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0));
+                           // (fdata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) ? true : false);
       }  //lint !e550  end while()
 
       //  search for another file
@@ -147,7 +148,7 @@ int read_files(TCHAR *filespec)
 // 
 //********************************************************************************
 struct vcolumn_elements_s {
-   ffdata *ftemp {nullptr};
+   // ffdata *ftemp {nullptr};
    uint rows {};
    uint top_col_idx {};
 };
@@ -259,7 +260,7 @@ int main() // NOLINT
 
 //********************************************************************************
 // static TCHAR file_spec[MAX_FILE_LEN+1] = _T("") ;
-static std::wstring file_spec(L"");
+static std::wstring file_spec ;
 
 int wmain(int argc, wchar_t *argv[])
 {
