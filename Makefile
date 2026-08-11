@@ -55,11 +55,7 @@ GNAME=g++
 %.o: %.cpp
 	$(TOOLS)/$(GNAME) $(CFLAGS) -c $< -o $@
 
-ifeq ($(USE_64BIT),NO)
 BIN = uni_file_mgr.exe
-else
-BIN = uni_file_mgr64.exe
-endif
 
 all: $(BIN)
 
