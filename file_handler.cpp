@@ -8,7 +8,7 @@
 #include <string>
 #include <memory>
 #include <tchar.h>
-#ifdef USE_64BIT
+#ifdef _WIN64
 #include <fileapi.h>
 #endif
 
