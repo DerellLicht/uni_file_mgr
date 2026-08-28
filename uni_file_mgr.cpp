@@ -1,6 +1,7 @@
 //**********************************************************************************
-//  Copyright (c) 1998-2025 Derell Licht
-//  media_list.cpp - list info about various media files
+//  Copyright (c) 1998-2026 Derell Licht
+//  uni_file_mgr.cpp - Unicode file manager - 
+//  handles unicode filenames for input and output
 //**********************************************************************************
 
 #include <windows.h>
@@ -15,37 +16,24 @@
 #include "uni_file_mgr.h"
 #include "qualify.h"
 
-//lint -esym(1058, print_file_info)
-
-//  V1.01  Convert to Unicode
-//  V1.02  Add support for SVG files
-//  V1.03  Converted files linked list to vector/unique_ptr
 #define  VER_NUMBER "1.00"
 
 static TCHAR const * const Version = _T("UniFileMgr, Version " VER_NUMBER ) ;   //lint !e707
 
 //  per Jason Hood, this turns off MinGW's command-line expansion, 
 //  so we can handle wildcards like we want to.                    
-//lint -e765  external '_CRT_glob' could be made static
-//lint -e714  Symbol '_CRT_glob' not referenced
 int _CRT_glob = 0 ;
 
 // double total_ptime = 0.0 ;
 
-// lint -esym(534, FindClose)  // Ignoring return value of function
-//lint -esym(818, filespec, argv)  //could be declared as pointing to const
-// lint -e10  Expecting '}'
-
 std::vector<ffdata> flist;
 
-//lint -esym(843, filecount)  Variable could be declared as const
 static uint filecount = 0 ;
 
 //  name of drive+path without filenames
 TCHAR base_path[MAX_FILE_LEN+1] ;
 unsigned base_len ;  //  length of base_path
 
-//lint -e129  declaration expected, identifier ignored
 std::unique_ptr<conio_min> console ;
 
 //**********************************************************************************
