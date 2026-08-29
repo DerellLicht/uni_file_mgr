@@ -1,5 +1,4 @@
 # makefile for uni_file_mgr app
-# SHELL=cmd.exe
 USE_DEBUG = NO
 USE_64BIT = NO
 USE_UNICODE = YES
@@ -48,23 +47,33 @@ OBJS = $(CPPSRC:.cpp=.o)
 
 LIBS=-lshlwapi -lcomdlg32
 
-GNAME=g++
-#GNAME=clang++
+BASE := uni_file_mgr
 
+# Automatically parse the latest version block
+VERSION := $(shell grep -oE '\[[0-9]+\.[0-9]+\]' CHANGELOG.md | head -n 1 | tr -d '[]')
+DIST_ZIP := $(BASE)V$(VERSION).zip
 #**************************************************************************
 %.o: %.cpp
-	$(TOOLS)/$(GNAME) $(CFLAGS) -c $< -o $@
+	$(TOOLS)/$(GNAME) $(CFLAGS) $< -o $@
 
-BIN = uni_file_mgr.exe
+BIN = $(BASE).exe
 
 all: $(BIN)
 
 clean:
 	rm -f $(OBJS) *.exe *~ *.zip
 
+# Your new automated release workflow
+release:
+	cmd /C "@echo Preparing GitHub release for v$(VERSION)..."
+	sed -n '/## \['$(VERSION)'\]/,/## \[/p' CHANGELOG.md | sed '$$d' > temp_notes.md
+	gh release create v$(VERSION) ./$(DIST_ZIP) ./CHANGELOG.md --notes-file temp_notes.md
+	rm temp_notes.md
+	cmd /C "@echo Release v$(VERSION) successfully uploaded to GitHub!"
+	
 dist:
-	rm -f uni_file_mgr.zip
-	zip uni_file_mgr.zip $(BIN) Readme.md
+	rm -f *.zip
+	zip $(DIST_ZIP) $(BIN) Readme.md CHANGELOG.md
 
 wc:
 	wc -l $(CPPSRC)
